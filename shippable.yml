@@ -3,7 +3,6 @@ language: c
 compiler:
   - gcc
 
-
 integrations:
   notifications:
     - integrationName: email
@@ -13,80 +12,45 @@ integrations:
       on_cancel: never
       on_pull_request: never
 
-# pre_ci_boot:
-#       image_name: brettbj/continuous_analysis_base
-#       image_tag: latest
-#       pull: true
-#       options: "-e HOME=/root"
 
 build:
-#   cache: true
-# cache_dir_list:
-#   - /root/miniconda/pkgs
-#   - /root/.conda/pkgs
-
-# pre_ci_boot:
-#       # image_name: jfaria/kima-docker
-#       image_name: frolvlad/alpine-miniconda3
-#       image_tag: latest
-#       pull: true
-#       options: "-e HOME=/root"
-
   ci:
-    - pwd 
-    - echo $SHIPPABLE_BUILD_DIR
-    - echo $HOME
+    # - apt-get update -qq
 
-    - apt-get update -qq
+    # # install python packages
+    # - apt-get install -y -qq python3-pip
+    # - pip3 install numpy scipy matplotlib jupyter
 
-    # install conda
-    # - wget -q http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-    # - bash miniconda.sh -b -p $HOME/miniconda
-    # - export PATH="$HOME/miniconda/bin:$PATH"
-    # - conda config --set always_yes yes --set changeps1 no
-    # - conda update -q conda
-    # # - conda info -a
-    # - conda install -c conda-forge scipy numpy matplotlib jupyter
-    # # - conda create -q -n shippable-env python=3.6 scipy numpy matplotlib jupyter
-    # # - source activate shippable-env
+    # # install kima and pykima
+    # - git clone --recursive https://github.com/j-faria/kima.git
+    # - cd kima
+    # - make -j 2
+    # - python3 setup.py install
 
-    # install python packages
-    - apt-get install -y -qq python3-pip
-    - pip3 install numpy scipy matplotlib jupyter
+    # # run kima on the examples
+    # - cd examples/51Peg
+    # - sed -i 's/5000/100/g' OPTIONS
+    # - ./kima -t 2
 
-    - which python3
-
-    # install kima and pykima
-    - git clone --recursive https://github.com/j-faria/kima.git
-    - cd kima
-    - make -j 2
-    - python3 setup.py install
-
-    # run kima on the examples
-    - cd examples/51Peg
-    - sed -i 's/5000/100/g' OPTIONS
-    - ./kima -t 2
+    # # create the report
+    # - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
+    # - jupyter nbconvert --to html --execute report.ipynb
     # - ls
-    # - kima-showresults
-
-    # create the report
-    - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
-    - jupyter nbconvert --to html --execute report.ipynb
-    - ls
 
 
     # # push it back to github
     # - cd $SHIPPABLE_BUILD_DIR
     # - mv kima/examples/51Peg/report.html reports
 
-    # - git config user.email "joao.faria@astro.up.pt"
-    # - git config user.name "João Faria"
-    # - git config --global push.default simple
-    # - git remote set-url origin https://github.com/j-faria/kima-them-all.git
+    - touch reports/empty2
+    - git config user.email "joao.faria@astro.up.pt"
+    - git config user.name "João Faria"
+    - git config --global push.default simple
+    - git remote set-url origin https://github.com/j-faria/kima-them-all.git
 
     # # - git checkout master
     # # - git pull
-    # - git add reports
-    # - git commit -a -m "shippable output [ci skip]"
-    # - git push
+    - git add reports
+    - git commit -a -m "shippable output [ci skip]"
+    - git push
 
