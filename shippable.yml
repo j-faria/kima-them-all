@@ -29,8 +29,9 @@ build:
 
     # run kima on the examples
     - cd examples/51Peg
-    - sed -i 's/5000/100/g' OPTIONS
-    - ./kima -t 2
+    # - sed -i 's/5000/100/g' OPTIONS
+    # - ./kima -t 2
+    - timeout 20s ./kima -t 2
 
     # create the report
     - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
