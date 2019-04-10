@@ -1,0 +1,6 @@
+pre_ci_boot:
+      image_name: brettbj/continuous_analysis_base
+      image_tag: latest
+      pull: true
+      options: "-e HOME=/root"
+
