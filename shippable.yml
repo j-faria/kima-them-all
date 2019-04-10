@@ -11,6 +11,8 @@ compiler:
 
 
 build:
+  cache: true
+
   ci:
     - pwd 
 
@@ -27,7 +29,7 @@ build:
     # install kima and pykima
     - git clone --recursive https://github.com/j-faria/kima.git
     - cd kima
-    - make main -j 2
+    - make -j 2
     - python setup.py install
 
     # run kima on the examples
