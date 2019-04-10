@@ -25,12 +25,12 @@ build:
   #   - /root/miniconda/pkgs
   #   - /root/.conda/pkgs
 
-  pre_ci_boot:
-        # image_name: jfaria/kima-docker
-        image_name: frolvlad/alpine-miniconda3
-        image_tag: latest
-        pull: true
-        options: "-e HOME=/root"
+  # pre_ci_boot:
+  #       # image_name: jfaria/kima-docker
+  #       image_name: frolvlad/alpine-miniconda3
+  #       image_tag: latest
+  #       pull: true
+  #       options: "-e HOME=/root"
 
   ci:
     - pwd 
@@ -43,11 +43,11 @@ build:
     # - export PATH="$HOME/miniconda/bin:$PATH"
     # - conda config --set always_yes yes --set changeps1 no
     # - conda update -q conda
-    - conda info -a
+    # - conda info -a
     # - conda create -q -n shippable-env python=3.6 scipy numpy matplotlib jupyter
     # - source activate shippable-env
-    - which python
-    - conda list
+    # - which python
+    # - conda list
 
     # install kima and pykima
     # - git clone --recursive https://github.com/j-faria/kima.git
