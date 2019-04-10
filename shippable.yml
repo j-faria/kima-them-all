@@ -23,8 +23,10 @@ build:
 
     # install kima and pykima
     - git clone --recursive https://github.com/j-faria/kima.git
-    - make -j 2 -C kima
-    - python3 kima/setup.py install
+    - cd kima
+    - make -j 2
+    - python3 setup.py install
+    - cd ..
 
     # run kima on the examples
     - if [ "$BRANCH" == "master" ]; then ./run-kima-examples.sh; fi
