@@ -15,43 +15,39 @@ integrations:
 
 build:
   ci:
-    # - apt-get update -qq
+    - apt-get update -qq
 
-    # # install python packages
-    # - apt-get install -y -qq python3-pip
-    # - pip3 install numpy scipy matplotlib jupyter
+    # install python packages
+    - apt-get install -y -qq python3-pip
+    - pip3 install numpy scipy matplotlib jupyter
 
-    # # install kima and pykima
-    # - git clone --recursive https://github.com/j-faria/kima.git
-    # - cd kima
-    # - make -j 2
-    # - python3 setup.py install
+    # install kima and pykima
+    - git clone --recursive https://github.com/j-faria/kima.git
+    - cd kima
+    - make -j 2
+    - python3 setup.py install
 
-    # # run kima on the examples
-    # - cd examples/51Peg
-    # - sed -i 's/5000/100/g' OPTIONS
-    # - ./kima -t 2
+    # run kima on the examples
+    - cd examples/51Peg
+    - sed -i 's/5000/100/g' OPTIONS
+    - ./kima -t 2
 
-    # # create the report
-    # - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
-    # - jupyter nbconvert --to html --execute report.ipynb
-    # - ls
+    # create the report
+    - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
+    - jupyter nbconvert --to html --execute report.ipynb
+    - ls
 
 
-    # # push it back to github
-    # - cd $SHIPPABLE_BUILD_DIR
-    # - mv kima/examples/51Peg/report.html reports
+    # push it back to github
+    - cd $SHIPPABLE_BUILD_DIR
+    - mv kima/examples/51Peg/report.html reports/report_51Peg.html
 
-    - touch reports/empty2
     - git config user.email "joao.faria@astro.up.pt"
     - git config user.name "João Faria"
     - git config --global push.default simple
     - git remote set-url origin git@github.com:j-faria/kima-them-all.git
 
-    # # - git checkout master
-    # # - git pull
     - git add reports
     - git commit -a -m "shippable output [ci skip]"
-    # - ssh-agent bash -c 'ssh-add /tmp/ssh/01_deploy; git push'
     - git push
 
