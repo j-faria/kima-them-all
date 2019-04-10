@@ -32,7 +32,7 @@ build:
     - if [ "$BRANCH" == "master" ]; then ./run-kima-examples.sh; fi
 
     # it's a pull request
-    - if [ "$IS_PULL_REQUEST" == true ]; then python run-pull-request.py; fi
+    - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py; fi
 
 
     # push it back to github
