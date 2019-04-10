@@ -13,16 +13,19 @@ compiler:
 build:
   ci:
     - pwd 
-    - git clone --recursive https://github.com/j-faria/kima.git
-    - cd kima
-    - make -j 2
 
-    # "install" conda
-    - docker pull conda/miniconda3
-    - docker run -i -t conda/miniconda3 /bin/bash
-
+    # install conda
+    - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update -q conda
+    - conda info -a
+    # - git clone --recursive https://github.com/j-faria/kima.git
+    # - cd kima
+    # - make -j 2
     - which python
-    - conda list
+    # - conda list
     # run kima on the examples
     # - cd examples/51Peg
     # - ./kima -t 2 > 51Peg.out
