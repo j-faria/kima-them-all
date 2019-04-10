@@ -6,10 +6,13 @@ compiler:
 build:
   ci:
     - pwd 
+    - git clone --recursive https://github.com/j-faria/kima.git
+    - cd kima
+    - make -j 2
 
-pre_ci_boot:
-      image_name: brettbj/continuous_analysis_base
-      image_tag: latest
-      pull: true
-      options: "-e HOME=/root"
+# pre_ci_boot:
+#       image_name: brettbj/continuous_analysis_base
+#       image_tag: latest
+#       pull: true
+#       options: "-e HOME=/root"
 
