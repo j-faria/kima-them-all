@@ -8,6 +8,12 @@ for e in 51Peg #BL2009 CoRoT7
 do
     cd $e
     pwd
-    # ../../../run
+    
+    $HOME/run
+    
+    # report
+    jupyter nbconvert --to notebook $HOME/templates/report.ipynb --output-dir .
+    jupyter nbconvert --to html --execute report.ipynb
+
     cd ..
 done
