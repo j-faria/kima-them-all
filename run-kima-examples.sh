@@ -10,12 +10,12 @@ do
     cd $e
     pwd
 
-    $SHIPPABLE_BUILD_DIR/run
+    $SHIPPABLE_BUILD_DIR/run > $e.out
     
     # report
     jupyter nbconvert --to notebook $SHIPPABLE_BUILD_DIR/templates/report.ipynb --output-dir .
     jupyter nbconvert --to html --execute report.ipynb
 
     cd ..
-    
+
 done
