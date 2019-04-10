@@ -30,8 +30,7 @@ build:
     - make main -j 2
     - python setup.py install
 
-    # - conda list
-    run kima on the examples
+    # run kima on the examples
     - cd examples/51Peg
     - sed -i 's/5000/100/g' OPTIONS
     - ./kima -t 2
