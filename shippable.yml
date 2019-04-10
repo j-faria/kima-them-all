@@ -1,3 +1,12 @@
+language: c
+
+compiler:
+  - gcc
+
+build:
+  ci:
+    - pwd 
+
 pre_ci_boot:
       image_name: brettbj/continuous_analysis_base
       image_tag: latest
