@@ -20,6 +20,9 @@ integrations:
 #       options: "-e HOME=/root"
 
 
+setup_ve:
+  - gcc --version
+
 build:
   cache: true
   cache_dir_list:
