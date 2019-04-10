@@ -23,32 +23,31 @@ build:
 
     # install kima and pykima
     - git clone --recursive https://github.com/j-faria/kima.git
-    - cd kima
-    - make -j 2
-    - python3 setup.py install
+    - make -j 2 -C kima
+    - python3 kima/setup.py install
 
     # run kima on the examples
-    - cd examples/51Peg
-    # - sed -i 's/5000/100/g' OPTIONS
-    # - ./kima -t 2
-    - ../../../run
+    - if [ "$BRANCH" == "master" ]; then ./run-kima-examples.sh; fi
 
-    # create the report
-    - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
-    - jupyter nbconvert --to html --execute report.ipynb
-    - ls
+    # it's a pull request
+    - if [ "$IS_PULL_REQUEST" == true ]; then ./run-pull-request.sh
+
+    # # create the report
+    # - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
+    # - jupyter nbconvert --to html --execute report.ipynb
+    # - ls
 
 
-    # push it back to github
-    - cd $SHIPPABLE_BUILD_DIR
-    - mv kima/examples/51Peg/report.html reports/report_51Peg.html
+    # # push it back to github
+    # - cd $SHIPPABLE_BUILD_DIR
+    # - mv kima/examples/51Peg/report.html reports/report_51Peg.html
 
-    - git config user.email "joao.faria@astro.up.pt"
-    - git config user.name "João Faria"
-    - git config --global push.default simple
-    - git remote set-url origin git@github.com:j-faria/kima-them-all.git
+    # - git config user.email "joao.faria@astro.up.pt"
+    # - git config user.name "João Faria"
+    # - git config --global push.default simple
+    # - git remote set-url origin git@github.com:j-faria/kima-them-all.git
 
-    - git add reports
-    - git commit -m "shippable output [ci skip]"
-    - git push
+    # - git add reports
+    # - git commit -m "shippable output [ci skip]"
+    # - git push
 
