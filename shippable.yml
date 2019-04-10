@@ -21,10 +21,15 @@ build:
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
     - conda info -a
-    # - git clone --recursive https://github.com/j-faria/kima.git
-    # - cd kima
-    # - make -j 2
-    - which python
+    - conda create -q -n shippable-env python=3.6 scipy numpy matplotlib jupyter
+    - source activate shippable-env
+
+    # install kima
+    - git clone --recursive https://github.com/j-faria/kima.git
+    - cd kima
+    - make main -j 2
+    - python setup.py install
+
     # - conda list
     # run kima on the examples
     # - cd examples/51Peg
