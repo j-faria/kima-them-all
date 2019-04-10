@@ -32,7 +32,7 @@ build:
     - if [ "$BRANCH" == "master" && "$IS_PULL_REQUEST" == false ]; then ./run-kima-examples.sh; fi
 
     # it's a pull request
-    - git --no-pager diff --stat --name-only $BASE_BRANCH..$HEAD_BRANCH -- runs
+    - git --no-pager diff --stat --name-only $BASE_BRANCH -- runs
     # - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py; fi
 
 
