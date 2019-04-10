@@ -12,6 +12,10 @@ compiler:
 
 build:
   cache: true
+  cache_dir_list:
+    - /root/miniconda/pkgs
+    - /root/.conda/pkgs
+    
 
   ci:
     - pwd 
