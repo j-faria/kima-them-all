@@ -27,7 +27,7 @@ build:
     - /root/.conda/pkgs
 
   pre_ci_boot:
-        image_name: conda/miniconda3
+        image_name: jfaria/kima-docker
         image_tag: latest
         pull: true
         options: "-e HOME=/root"
@@ -50,10 +50,10 @@ build:
     - conda list
 
     # install kima and pykima
-    - git clone --recursive https://github.com/j-faria/kima.git
-    - cd kima
-    - make -j 2
-    - python setup.py install
+    # - git clone --recursive https://github.com/j-faria/kima.git
+    # - cd kima
+    # - make -j 2
+    # - python setup.py install
 
     # # run kima on the examples
     # - cd examples/51Peg
