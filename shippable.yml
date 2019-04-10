@@ -29,7 +29,7 @@ build:
     - cd ..
 
     # run kima on the examples
-    - if [ "$BRANCH" == "master" ]; then ./run-kima-examples.sh; fi
+    - if [ "$BRANCH" == "master" && "$IS_PULL_REQUEST" == false ]; then ./run-kima-examples.sh; fi
 
     # it's a pull request
     - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py; fi
@@ -41,6 +41,6 @@ build:
     - git config --global push.default simple
     - git remote set-url origin git@github.com:j-faria/kima-them-all.git
 
-    - if [ "$BRANCH" == "master" ]; then ./push-examples.sh; fi
+    - if [ "$BRANCH" == "master"  && "$IS_PULL_REQUEST" == false ]; then ./push-examples.sh; fi
     - if [ "$IS_PULL_REQUEST" == true ]; then ./push-pull-request.sh; fi
 

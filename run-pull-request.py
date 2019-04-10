@@ -3,18 +3,18 @@ import sys
 import subprocess
 import shutil
 
-PR_branch = 'fakepull'  # os.environ['HEAD_BRANCH']
-BASE_branch = 'master'  # os.environ['BASE_BRANCH']
-BUILD_DIR = '.'  # os.environ('SHIPPABLE_BUILD_DIR')
+PR_branch = os.environ['HEAD_BRANCH']
+BASE_branch = os.environ['BASE_BRANCH']
+BUILD_DIR = os.environ('SHIPPABLE_BUILD_DIR')
 
 
 def new_directories():
-    cmd = f'git --no-pager diff --name-only {BASE_branch}..{PR_branch} -- runs'
+    cmd = 'git --no-pager diff --name-only %s..%s -- runs' % (BASE_branch, PR_branch)
     out = subprocess.check_output(cmd.split()).decode().strip()
     out = out.split('\n')[0]
 
     directory = os.path.dirname(out)
-    print(f'Found new directory "{directory}"')
+    print('Found new directory "%s"' % directory)
 
     return directory
 
