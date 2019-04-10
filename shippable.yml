@@ -19,18 +19,18 @@ integrations:
 #       pull: true
 #       options: "-e HOME=/root"
 
-# build:
+build:
 #   cache: true
-  # cache_dir_list:
-  #   - /root/miniconda/pkgs
-  #   - /root/.conda/pkgs
+# cache_dir_list:
+#   - /root/miniconda/pkgs
+#   - /root/.conda/pkgs
 
-  # pre_ci_boot:
-  #       # image_name: jfaria/kima-docker
-  #       image_name: frolvlad/alpine-miniconda3
-  #       image_tag: latest
-  #       pull: true
-  #       options: "-e HOME=/root"
+# pre_ci_boot:
+#       # image_name: jfaria/kima-docker
+#       image_name: frolvlad/alpine-miniconda3
+#       image_tag: latest
+#       pull: true
+#       options: "-e HOME=/root"
 
   ci:
     - pwd 
