@@ -29,6 +29,7 @@ build:
 
   ci:
     - pwd 
+    - echo $SHIPPABLE_BUILD_DIR
     - echo $HOME
 
     # install conda
@@ -61,7 +62,7 @@ build:
 
 
     # push it back to github
-    - cd
+    - cd $SHIPPABLE_BUILD_DIR
     - mv kima/examples/51Peg/report.html reports
 
     - git config user.email "joao.faria@astro.up.pt"
