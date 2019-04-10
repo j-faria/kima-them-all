@@ -38,15 +38,15 @@ build:
     - echo $HOME
 
     # install conda
-    - wget -q http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-    - bash miniconda.sh -b -p $HOME/miniconda
-    - export PATH="$HOME/miniconda/bin:$PATH"
-    - conda config --set always_yes yes --set changeps1 no
-    - conda update -q conda
-    # - conda info -a
-    - conda install -c conda-forge scipy numpy matplotlib jupyter
-    # - conda create -q -n shippable-env python=3.6 scipy numpy matplotlib jupyter
-    # - source activate shippable-env
+    # - wget -q http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    # - bash miniconda.sh -b -p $HOME/miniconda
+    # - export PATH="$HOME/miniconda/bin:$PATH"
+    # - conda config --set always_yes yes --set changeps1 no
+    # - conda update -q conda
+    # # - conda info -a
+    # - conda install -c conda-forge scipy numpy matplotlib jupyter
+    # # - conda create -q -n shippable-env python=3.6 scipy numpy matplotlib jupyter
+    # # - source activate shippable-env
     - which python
     - conda list
 
