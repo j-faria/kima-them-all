@@ -19,7 +19,6 @@ integrations:
 #       pull: true
 #       options: "-e HOME=/root"
 
-
 build:
   # cache: true
   # cache_dir_list:
