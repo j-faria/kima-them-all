@@ -10,6 +10,10 @@ build:
     - cd kima
     - make -j 2
 
+    # run kima on the examples
+    - cd examples/51Peg
+    - ./kima -t 2 > 51Peg.out
+
 # pre_ci_boot:
 #       image_name: brettbj/continuous_analysis_base
 #       image_tag: latest
