@@ -19,8 +19,8 @@ integrations:
 #       pull: true
 #       options: "-e HOME=/root"
 
-build:
-  cache: true
+# build:
+#   cache: true
   # cache_dir_list:
   #   - /root/miniconda/pkgs
   #   - /root/.conda/pkgs
@@ -57,22 +57,22 @@ build:
     - which python
 
     # install kima and pykima
-    # - git clone --recursive https://github.com/j-faria/kima.git
-    # - cd kima
-    # - make -j 2
-    # - python setup.py install
+    - git clone --recursive https://github.com/j-faria/kima.git
+    - cd kima
+    - make -j 2
+    - python setup.py install
 
-    # # run kima on the examples
-    # - cd examples/51Peg
-    # - sed -i 's/5000/100/g' OPTIONS
-    # - ./kima -t 2
-    # # - ls
-    # # - kima-showresults
-
-    # # create the report
-    # - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
-    # - jupyter nbconvert --to html --execute report.ipynb
+    # run kima on the examples
+    - cd examples/51Peg
+    - sed -i 's/5000/100/g' OPTIONS
+    - ./kima -t 2
     # - ls
+    # - kima-showresults
+
+    # create the report
+    - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
+    - jupyter nbconvert --to html --execute report.ipynb
+    - ls
 
 
     # # push it back to github
