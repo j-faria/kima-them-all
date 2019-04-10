@@ -15,6 +15,7 @@ build:
 
   ci:
     - pwd 
+    - echo $HOME
 
     # install conda
     - wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -36,7 +37,27 @@ build:
     - cd examples/51Peg
     - sed -i 's/5000/100/g' OPTIONS
     - ./kima -t 2
-    - ls
-    - kima-showresults
+    # - ls
+    # - kima-showresults
 
+    # create the report
+    - jupyter nbconvert --to notebook ../../../report.ipynb --output-dir .
+    - jupyter nbconvert --to html --execute report.ipynb
+    - ls
+
+
+    # push it back to github
+    - cd
+    - mv kima/examples/51Peg/report.html reports
+
+    - git config user.email "joao.faria@astro.up.pt"
+    - git config user.name "João Faria"
+    - git config --global push.default simple
+    - git remote set-url origin https://github.com/j-faria/kima-them-all.git
+
+    # - git checkout master
+    # - git pull
+    - git add reports
+    - git commit -a -m "shippable output [ci skip]"
+    - git push
 
