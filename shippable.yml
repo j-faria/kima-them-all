@@ -15,7 +15,7 @@ build:
     - pwd 
 
     # install conda
-    - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+    - wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
     - bash miniconda.sh -b -p $HOME/miniconda
     - export PATH="$HOME/miniconda/bin:$PATH"
     - conda config --set always_yes yes --set changeps1 no
@@ -24,15 +24,18 @@ build:
     - conda create -q -n shippable-env python=3.6 scipy numpy matplotlib jupyter
     - source activate shippable-env
 
-    # install kima
+    # install kima and pykima
     - git clone --recursive https://github.com/j-faria/kima.git
     - cd kima
     - make main -j 2
     - python setup.py install
 
     # - conda list
-    # run kima on the examples
-    # - cd examples/51Peg
-    # - ./kima -t 2 > 51Peg.out
+    run kima on the examples
+    - cd examples/51Peg
+    - sed -i 's/5000/100/g' OPTIONS
+    - ./kima -t 2
+    - ls
+    - kima-showresults
 
 
