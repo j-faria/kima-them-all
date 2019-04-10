@@ -5,7 +5,7 @@ import shutil
 
 PR_branch = os.environ['HEAD_BRANCH']
 BASE_branch = os.environ['BASE_BRANCH']
-BUILD_DIR = os.environ('SHIPPABLE_BUILD_DIR')
+BUILD_DIR = os.environ['SHIPPABLE_BUILD_DIR']
 
 
 def new_directories():
