@@ -47,8 +47,12 @@ build:
     # - conda install -c conda-forge scipy numpy matplotlib jupyter
     # # - conda create -q -n shippable-env python=3.6 scipy numpy matplotlib jupyter
     # # - source activate shippable-env
+
+    # install python packages
+    - apt install python3-pip
+    - pip3 install numpy scipy matplotlib jupyter
+
     - which python
-    - conda list
 
     # install kima and pykima
     # - git clone --recursive https://github.com/j-faria/kima.git
