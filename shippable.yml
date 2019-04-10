@@ -37,7 +37,7 @@ build:
     - echo $SHIPPABLE_BUILD_DIR
     - echo $HOME
 
-    - sudo apt-get update -qq
+    - apt-get update -qq
 
     # install conda
     # - wget -q http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -51,16 +51,16 @@ build:
     # # - source activate shippable-env
 
     # install python packages
-    - sudo apt-get install -y python3-pip
+    - apt-get install -y -qq python3-pip
     - pip3 install numpy scipy matplotlib jupyter
 
-    - which python
+    - which python3
 
     # install kima and pykima
     - git clone --recursive https://github.com/j-faria/kima.git
     - cd kima
     - make -j 2
-    - python setup.py install
+    - python3 setup.py install
 
     # run kima on the examples
     - cd examples/51Peg
