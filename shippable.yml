@@ -46,7 +46,7 @@ build:
     - git config user.email "joao.faria@astro.up.pt"
     - git config user.name "João Faria"
     - git config --global push.default simple
-    - git remote set-url origin https://github.com/j-faria/kima-them-all.git
+    - git remote set-url origin git@github.com/j-faria/kima-them-all.git
 
     # # - git checkout master
     # # - git pull
