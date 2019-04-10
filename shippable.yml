@@ -52,5 +52,6 @@ build:
     # # - git pull
     - git add reports
     - git commit -a -m "shippable output [ci skip]"
-    - git push
+    - ssh-agent bash -c 'ssh-add /tmp/ssh/01_deploy; git push'
+    # - git push
 
