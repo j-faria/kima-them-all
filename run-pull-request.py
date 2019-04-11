@@ -68,7 +68,7 @@ def run_kima(directory):
 
     cmd = 'jupyter nbconvert --to notebook %s/templates/report.ipynb --output-dir .' % BUILD_DIR
     os.system(cmd)
-    cmd = 'jupyter nbconvert --to notebook --execute report.ipynb'
+    cmd = 'jupyter nbconvert --to notebook --execute --inplace report.ipynb'
     os.system(cmd)
 
     os.chdir(wd)
