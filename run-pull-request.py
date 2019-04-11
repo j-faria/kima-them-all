@@ -14,7 +14,7 @@ def new_directories():
     out = out.split('\n')[0]
 
     directory = os.path.dirname(out)
-    print('Found new directory "%s"' % directory)
+    # print('Found new directory "%s"' % directory, flush=True)
 
     return directory
 
@@ -60,12 +60,15 @@ def create_template(directory):
 def run_kima(directory):
     wd = os.getcwd()
     os.chdir(directory)
-    print(os.getcwd())
-    os.system('ls')
 
     os.system('make')
 
     cmd = os.path.join(BUILD_DIR, 'run')
+    os.system(cmd)
+
+    cmd = 'jupyter nbconvert --to notebook %s/templates/report.ipynb --output-dir .' % BUILD_DIR
+    os.system(cmd)
+    cmd = 'jupyter nbconvert --to notebook --execute report.ipynb
     os.system(cmd)
 
     os.chdir(wd)
@@ -75,10 +78,8 @@ def push_results(directory):
     wd = os.getcwd()
     os.chdir(directory)
 
-    os.system('touch report.html')
-    os.system('git branch')
     os.system('git checkout %s' % PR_branch)
-    os.system('git add report.html')
+    os.system('git add report.ipynb')
     os.system('git commit -m "ran kima on PR files, hope it is ok... [ci skip]"')
     os.system('git push origin %s' % PR_branch)
     #
