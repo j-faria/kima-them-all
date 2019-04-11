@@ -18,21 +18,21 @@ build:
     - apt-get update -qq
 
     # install python packages
-    - apt-get install -y -qq python3-pip
-    - pip3 install numpy scipy matplotlib jupyter
+    # - apt-get install -y -qq python3-pip
+    # - pip3 install numpy scipy matplotlib jupyter
 
     # install kima and pykima
-    - git clone --recursive https://github.com/j-faria/kima.git
-    - cd kima
-    - make -j 2
-    - python3 setup.py install
-    - cd ..
+    # - git clone --recursive https://github.com/j-faria/kima.git
+    # - cd kima
+    # - make -j 2
+    # - python3 setup.py install
+    # - cd ..
 
     # run kima on the examples
-    - if [ "$BRANCH" == "master" && "$IS_PULL_REQUEST" == false ]; then ./run-kima-examples.sh; fi
+    # - if [ "$BRANCH" == "master" && "$IS_PULL_REQUEST" == false ]; then ./run-kima-examples.sh; fi
 
     # it's a pull request
-    - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py; fi
+    # - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py; fi
 
 
     # push it back to github
@@ -42,5 +42,5 @@ build:
     - git remote set-url origin git@github.com:j-faria/kima-them-all.git
 
     - if [ "$BRANCH" == "master"  && "$IS_PULL_REQUEST" == false ]; then ./push-examples.sh; fi
-    - if [ "$IS_PULL_REQUEST" == true ]; then ./push-pull-request.sh; fi
+    - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py pull ; fi
 

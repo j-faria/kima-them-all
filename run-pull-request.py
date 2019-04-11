@@ -74,6 +74,13 @@ def run_kima(directory):
 def push_results(directory):
     wd = os.getcwd()
     os.chdir(directory)
+
+    os.system('touch report.html')
+    os.system('git branch')
+    os.system('git checkout %s' % PR_branch)
+    os.system('git add report.html')
+    os.system('git commit -m "ran kima on PR files, hope it is ok... [ci skip]"')
+    os.system('git push origin %s' % PR_branch)
     #
     # - git config user.email "joao.faria@astro.up.pt"
     # - git config user.name "João Faria"
@@ -89,5 +96,9 @@ def push_results(directory):
 
 if __name__ == "__main__":
     directory = new_directories()
-    check_directory(directory)
-    run_kima(directory)
+    
+    if 'push' in sys.argv:
+        push_results(directory)
+    else:
+        check_directory(directory)
+        run_kima(directory)
