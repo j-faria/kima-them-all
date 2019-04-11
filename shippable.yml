@@ -42,5 +42,5 @@ build:
     - git remote set-url origin git@github.com:j-faria/kima-them-all.git
 
     - if [ "$BRANCH" == "master"  && "$IS_PULL_REQUEST" == false ]; then ./push-examples.sh; fi
-    - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py pull ; fi
+    - if [ "$IS_PULL_REQUEST" == true ]; then python3 run-pull-request.py push ; fi
 
