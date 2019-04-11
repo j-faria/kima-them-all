@@ -9,7 +9,7 @@ BUILD_DIR = os.environ['SHIPPABLE_BUILD_DIR']
 
 
 def new_directories():
-    cmd = 'git --no-pager diff --name-only %s..%s -- runs' % (BASE_branch, PR_branch)
+    cmd = 'git --no-pager diff --name-only %s -- runs' % BASE_branch
     out = subprocess.check_output(cmd.split()).decode().strip()
     out = out.split('\n')[0]
 
