@@ -1,0 +1,10 @@
+name: Run!
+on: [pull_request]
+
+jobs:
+  label: one run
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "run a test"
