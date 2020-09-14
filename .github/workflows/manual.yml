@@ -69,4 +69,4 @@ jobs:
           echo "Do something with this ${changed_file}."
         done
 
-        ls 
+        ls ${{ steps.files.outputs.all }} | ls /* -d
