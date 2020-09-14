@@ -50,10 +50,10 @@ jobs:
         export PATH="$HOME/miniconda/bin:$PATH"
         python setup.py install --user
 
-    - name: Run the test
-      run: |
-        ls
-        pwd
+    # - name: Run the test
+    #   run: |
+    #     ls
+    #     pwd
 
     - id: files
       uses: jitterbit/get-changed-files@v1
@@ -65,6 +65,7 @@ jobs:
 
     - name: Run kima on new directory
       run: |
+        export PATH="$HOME/miniconda/bin:$PATH"
         cd $(dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"`)
         kima-run -c
         kima-run
