@@ -27,9 +27,9 @@ jobs:
     steps: 
     # Runs a single command using the runners shell
     - name: Install kima and pykima
-      run: 
-        - git clone --recursive https://www.github.com/j-faria/kima.git
-        - cd kima
-        - make -j 2
-        - python setup.py install
+      run: |
+        git clone --recursive https://www.github.com/j-faria/kima.git
+        cd kima
+        make -j 2
+        python setup.py install
 
