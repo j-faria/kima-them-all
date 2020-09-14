@@ -69,4 +69,4 @@ jobs:
           echo "Do something with this ${changed_file}."
         done
 
-        echo running on branch ${GITHUB_REF##*/}
+        git branch
