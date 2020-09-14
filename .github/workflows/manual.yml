@@ -57,7 +57,12 @@ jobs:
 
     - id: files
       uses: jitterbit/get-changed-files@v1
-    
+
+    - name: Checkout PR branch
+      uses: actions/checkout@v2
+      with:
+        ref: run-test
+
     - name: Changed files
       run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
