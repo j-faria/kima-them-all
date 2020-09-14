@@ -36,8 +36,10 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
 
-    - id: files
+    - name: Get changed files
+      id: files
       uses: jitterbit/get-changed-files@v1
+      if: ${{ github.event_name == 'pull_request' }}
 
     - name: Install anaconda
       run: |
@@ -57,11 +59,6 @@ jobs:
         make main -j 2
         export PATH="$HOME/miniconda/bin:$PATH"
         python setup.py install --user
-
-    # - name: Run the test
-    #   run: |
-    #     ls
-    #     pwd
 
     - name: Run kima on new directory
       run: |
