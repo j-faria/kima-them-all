@@ -64,4 +64,7 @@ jobs:
           echo "Do something with this ${changed_file}."
         done
 
+        pwd
+        ls
+        cd kima-them-all
         git branch
