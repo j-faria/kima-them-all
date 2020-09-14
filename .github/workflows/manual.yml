@@ -69,4 +69,4 @@ jobs:
           echo "Do something with this ${changed_file}."
         done
 
-        git branch
+        echo ${{ github.head_ref }}
