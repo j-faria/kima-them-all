@@ -63,12 +63,7 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
 
-    - name: Changed files
+    - name: Run kima on new directory
       run: |
-        for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "Do something with this file: ${changed_file} in directory `dirname ${changed_file}`"
-        done
-
-        dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"`
-
-        ls ${{ steps.files.outputs.all }} | ls */ -d
+        cd `dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"``
+        ls
