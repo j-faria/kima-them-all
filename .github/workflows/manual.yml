@@ -5,12 +5,15 @@ name: Manual workflow
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
+  pull_request:
+    branches: [runs]
+
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Analysis to run'
+        description: 'Folder where analysis should run'
         # Default value if no value is explicitly provided
         default: 'test'
         # Input has to be provided for the workflow to run
@@ -50,3 +53,11 @@ jobs:
       run: |
         ls
         pwd
+
+    - name: Changed files
+      id: files
+      uses: jitterbit/get-changed-files@v1
+      run: |
+        for changed_file in ${{ steps.files.outputs.all }}; do
+          echo "Do something with this ${changed_file}."
+        done
