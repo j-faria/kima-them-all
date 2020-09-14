@@ -66,4 +66,5 @@ jobs:
     - name: Run kima on new directory
       run: |
         cd $(dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"`)
-        ls
+        kima-run -c
+        kima-run
