@@ -31,24 +31,24 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps: 
 
-    # - name: Install anaconda
-    #   run: |
-    #     wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh;
-    #     bash ~/miniconda.sh -b -p $HOME/miniconda
-    #     export PATH="$HOME/miniconda/bin:$PATH"
-    #     conda config --set always_yes yes --set changeps1 no
-    #     conda update -q conda
-    #     conda install nomkl numpy scipy matplotlib
-    #     conda install -c conda-forge pybind11 autograd celerite
-    #     pip install corner
+    - name: Install anaconda
+      run: |
+        wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh;
+        bash ~/miniconda.sh -b -p $HOME/miniconda
+        export PATH="$HOME/miniconda/bin:$PATH"
+        conda config --set always_yes yes --set changeps1 no
+        conda update -q conda
+        conda install nomkl numpy scipy matplotlib
+        conda install -c conda-forge pybind11 autograd celerite
+        pip install corner
     
-    # - name: Install kima and pykima
-    #   run: |
-    #     git clone --recursive https://www.github.com/j-faria/kima.git
-    #     cd kima
-    #     make main -j 2
-    #     export PATH="$HOME/miniconda/bin:$PATH"
-    #     python setup.py install --user
+    - name: Install kima and pykima
+      run: |
+        git clone --recursive https://www.github.com/j-faria/kima.git
+        cd kima
+        make main -j 2
+        export PATH="$HOME/miniconda/bin:$PATH"
+        python setup.py install --user
 
     - name: Run the test
       run: |
