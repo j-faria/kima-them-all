@@ -29,6 +29,19 @@ or by hand
 
 ```
 mkdir RunThisDirectory
-
 ```
 
+Now you need to (create and) edit a `kima_setup.cpp` file inside
+RunThisDirectory, as well as an `OPTIONS` file.
+
+Add your data file inside the folder (the same one referenced in the
+`kima_setup.cpp`).
+
+Do a pull request, after installing [this tool](https://github.com/jd/git-pull-request)
+
+```
+( pip install git-pull-request )
+git pull-request
+```
+
+That's it, GH will now run **kima** on your files.
