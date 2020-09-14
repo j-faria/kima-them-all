@@ -30,6 +30,10 @@ jobs:
       run: |
         git clone --recursive https://www.github.com/j-faria/kima.git
         cd kima
-        make -j 2
-        python setup.py install
+        make main -j 2
+        python setup.py install --user
 
+    - name: Run the test
+      run: |
+        ls
+        pwd
