@@ -69,4 +69,6 @@ jobs:
           echo "Do something with this file: ${changed_file} in directory `dirname ${changed_file}`"
         done
 
+        echo "${{ steps.files.outputs.all[0] }}"
+
         ls ${{ steps.files.outputs.all }} | ls */ -d
