@@ -43,6 +43,7 @@ jobs:
         git clone --recursive https://www.github.com/j-faria/kima.git
         cd kima
         make main -j 2
+        export PATH="$HOME/miniconda/bin:$PATH"
         python setup.py install --user
 
     - name: Run the test
