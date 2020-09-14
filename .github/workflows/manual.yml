@@ -31,6 +31,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps: 
 
+    - name: Checkout PR branch
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+
+    - id: files
+      uses: jitterbit/get-changed-files@v1
+
     - name: Install anaconda
       run: |
         wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh;
@@ -54,14 +62,6 @@ jobs:
     #   run: |
     #     ls
     #     pwd
-
-    - id: files
-      uses: jitterbit/get-changed-files@v1
-
-    - name: Checkout PR branch
-      uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
 
     - name: Run kima on new directory
       run: |
