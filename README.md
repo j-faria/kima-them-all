@@ -18,4 +18,17 @@ Then, checkout a new branch from master (change "mybranch" to whatever you want)
 git checkout -b mybranch --track origin/master
 ```
 
-This will checkout a new branch called myownbranch that is a copy of master. Using the --track option makes sure that the upstream source branch is written in your .git/config file. This will allow git-pull-request to know to which branch send the pull-request.
+Create a new directory for the **kima** analysis.
+You can do this with the `kima-template` if you have _pykima_ installed
+
+```
+kima-template RunThisDirectory
+```
+
+or by hand
+
+```
+mkdir RunThisDirectory
+
+```
+

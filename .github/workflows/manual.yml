@@ -67,10 +67,6 @@ jobs:
       run: |
         export PATH="$HOME/miniconda/bin:/home/runner/.local/bin:$PATH"
         cd $(dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"`)
-        echo "KIMA_DIR = ../kima\ninclude $(KIMA_DIR)/examples.mk" > Makefile
-        cat Makefile
-        ls
-        pwd
-        ls ..
-        # kima-run -c
-        # kima-run
+        printf "KIMA_DIR = ../kima\ninclude \$(KIMA_DIR)/examples.mk\n"
+        kima-run -c
+        kima-run
