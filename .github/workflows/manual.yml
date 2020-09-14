@@ -65,7 +65,7 @@ jobs:
 
     - name: Run kima on new directory
       run: |
-        export PATH="$HOME/miniconda/bin:$PATH"
+        export PATH="$HOME/miniconda/bin:/home/runner/.local/bin:$PATH"
         cd $(dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"`)
         kima-run -c
         kima-run
