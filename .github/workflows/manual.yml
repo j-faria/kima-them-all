@@ -1,0 +1,62 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on: [pull_request]
+
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Folder where analysis should run'
+        # Default value if no value is explicitly provided
+        default: 'test'
+        # Input has to be provided for the workflow to run
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "greet"
+  kimait:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps: 
+
+    - name: Install anaconda
+      run: |
+        wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh;
+        bash ~/miniconda.sh -b -p $HOME/miniconda
+        export PATH="$HOME/miniconda/bin:$PATH"
+        conda config --set always_yes yes --set changeps1 no
+        conda update -q conda
+        conda install nomkl numpy scipy matplotlib
+        conda install -c conda-forge pybind11 autograd celerite
+        pip install corner
+    
+    - name: Install kima and pykima
+      run: |
+        git clone --recursive https://www.github.com/j-faria/kima.git
+        cd kima
+        make main -j 2
+        export PATH="$HOME/miniconda/bin:$PATH"
+        python setup.py install --user
+
+    - name: Run the test
+      run: |
+        ls
+        pwd
+
+    - id: files
+      uses: jitterbit/get-changed-files@v1
+    
+    - name: Changed files
+      run: |
+        for changed_file in ${{ steps.files.outputs.all }}; do
+          echo "Do something with this ${changed_file}."
+        done
