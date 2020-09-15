@@ -12,8 +12,8 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
+      folder:
+        # Friendly description to be shown in the UI instead of 'folder'
         description: 'Folder where analysis should run'
         # Default value if no value is explicitly provided
         default: 'test'
@@ -31,7 +31,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps: 
 
-    - name: Checkout PR branch
+    - name: Checkout the right branch (${{ github.head_ref }})
       uses: actions/checkout@v2
       with:
         ref: ${{ github.head_ref }}
@@ -60,10 +60,20 @@ jobs:
         export PATH="$HOME/miniconda/bin:$PATH"
         python setup.py install --user
 
-    - name: Run kima on new directory
+    - name: Run kima on PR directory
+      if: ${{ github.event_name == 'pull_request' }}
       run: |
         export PATH="$HOME/miniconda/bin:/home/runner/.local/bin:$PATH"
         cd $(dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"`)
+        printf "KIMA_DIR = ../kima\ninclude \$(KIMA_DIR)/examples.mk\n" > Makefile
+        kima-run -c
+        kima-run
+
+    - name: Run kima on directory
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        export PATH="$HOME/miniconda/bin:/home/runner/.local/bin:$PATH"
+        cd ${{ github.event.inputs.folder }}
         printf "KIMA_DIR = ../kima\ninclude \$(KIMA_DIR)/examples.mk\n" > Makefile
         kima-run -c
         kima-run
