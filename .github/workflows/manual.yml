@@ -1,9 +1,7 @@
-# This is a basic workflow that is manually triggered
-
-name: Manual workflow
+name: kima workflow
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
+# or API, and for every pull request to master
 on: 
   pull_request:
     branches:
@@ -14,21 +12,18 @@ on:
     inputs:
       folder:
         # Friendly description to be shown in the UI instead of 'folder'
-        description: 'Folder where analysis should run'
+        description: 'Directory where analysis should run'
         # Default value if no value is explicitly provided
-        default: 'test'
+        default: '51Peg'
         # Input has to be provided for the workflow to run
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
+
   kimait:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps: 
 
     - name: Checkout the right branch
@@ -67,7 +62,7 @@ jobs:
         cd $(dirname `ls ${{ steps.files.outputs.all }} | grep "kima_setup.cpp"`)
         printf "KIMA_DIR = ../kima\ninclude \$(KIMA_DIR)/examples.mk\n" > Makefile
         kima-run -c
-        kima-run
+        kima-run -t 2 --no-notify
 
     - name: Run kima on directory
       if: ${{ github.event_name == 'workflow_dispatch' }}
@@ -76,4 +71,4 @@ jobs:
         cd ${{ github.event.inputs.folder }}
         printf "KIMA_DIR = ../kima\ninclude \$(KIMA_DIR)/examples.mk\n" > Makefile
         kima-run -c
-        kima-run
+        kima-run -t 2 --no-notify
