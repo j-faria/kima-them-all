@@ -17,7 +17,9 @@ is triggered to run **kima** on the new folder and produce a report.
 
 
 <br>
+
 ---
+
 ### Step-by-step
 
 
