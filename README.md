@@ -53,7 +53,9 @@ mkdir RunThisDirectory
 
 Now you need to (create or) edit a `kima_setup.cpp` file inside
 RunThisDirectory, as well as an `OPTIONS` file.
-More information can be found in **kima**'s documentation here and here.
+More information can be found in **kima**'s documentation 
+[here](https://github.com/j-faria/kima/wiki/Getting-started) and 
+[here](https://github.com/j-faria/kima/wiki/Changing-OPTIONS).
 
 Add your data file inside the folder (the same one referenced in the
 `kima_setup.cpp`).
